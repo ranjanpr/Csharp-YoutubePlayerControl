@@ -20,6 +20,7 @@
       suggestedQuality: "hd720",
       playerVars: {
           'controls': 0,
+          'showinfo': 0
       },
 	  events: {
 		'onReady': onPlayerReady,
