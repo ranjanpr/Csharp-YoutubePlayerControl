@@ -17,7 +17,10 @@
 	  height: '390',
 	  width: '640',
 	  videoId: startUpId,
-	  suggestedQuality: "hd720",
+      suggestedQuality: "hd720",
+      playerVars: {
+          'controls': 0,
+      },
 	  events: {
 		'onReady': onPlayerReady,
 		'onStateChange': onPlayerStateChange,
