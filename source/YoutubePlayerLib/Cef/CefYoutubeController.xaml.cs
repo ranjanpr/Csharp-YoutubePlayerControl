@@ -26,7 +26,6 @@ namespace YoutubePlayerLib.Cef
     /// </summary>
     public partial class CefYoutubeController : UserControl, IYoutubeController
     {
-        private static readonly bool DebuggingSubProcess = Debugger.IsAttached;
         static CefYoutubeController()
         {
             var settings = new CefSettings();
@@ -37,11 +36,6 @@ namespace YoutubePlayerLib.Cef
                 SchemeHandlerFactory = new CefSharpSchemeHandlerFactory()
             });
             
-            //if (!CefSharp.Cef.Initialize(settings, shutdownOnProcessExit: true, performDependencyCheck: !DebuggingSubProcess))
-            //{
-            //    throw new Exception("Unable to Initialize Cef");
-            //}
-
             // The changes for Initialize, but not sure working perfectly.
             if (!CefSharp.Cef.Initialize(settings))
             {
@@ -183,6 +177,7 @@ namespace YoutubePlayerLib.Cef
             WebBrowser.Address = @"custom://cefsharp/CefPlayer.html";
             //set startup value for Player
             WebBrowser.LoadingStateChanged += CheckkIfLoadingDone;
+
             var boundAsync = new BoundObject();
             boundAsync.PlayerLoadingDone += JavascriptReady;
             boundAsync.PlayerPlayingChanged += BoundOnPlayerPlayingChanged;

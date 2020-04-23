@@ -19,7 +19,7 @@ namespace YoutubePlayerLib.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -83,7 +83,9 @@ namespace YoutubePlayerLib.Properties {
         ///		&lt;div id=&quot;player&quot;&gt;&lt;/div&gt;
         ///	&lt;/div&gt;
         ///
-        ///	&lt;script src=&quot;CefPlayer.js&quot;&gt;&lt;/script&gt;
+        ///	&lt;script src=&quot;CefPlayer.js&quot;&gt;
+        ///        
+        ///	&lt;/script&gt;
         ///	&lt;/body&gt;
         ///&lt;/html&gt;.
         /// </summary>
@@ -106,43 +108,13 @@ namespace YoutubePlayerLib.Properties {
         ///  var player;
         ///  var autoPlay = false;
         ///  var quality = &quot;hd720&quot;;
-        ///  var startUpId = &apos;XIMLoLxmTDw&apos;;
+        ///  var startUpId = &apos;SJdfQB289Zc&apos;;
         ///  
         ///  fun [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CefPlayer1 {
             get {
                 return ResourceManager.GetString("CefPlayer1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;html&gt;
-        ///	&lt;head&gt;
-        ///	&lt;meta charset=&apos;UTF-8&apos; /&gt;
-        ///	&lt;style type=&apos;text/css&apos;&gt;
-        ///	body {
-        ///		overflow:hidden;
-        ///	}
-        ///	#player{height:95%; width: 100%;}
-        ///	&lt;/style&gt;
-        ///	&lt;/head&gt;
-        ///	&lt;body&gt;
-        ///	&lt;div id=&apos;player&apos;&gt;&lt;/div&gt;
-        ///		&lt;script type=&apos;text/javascript&apos; src=&apos;http://www.youtube.com/player_api&apos;&gt;&lt;/script&gt;
-        ///		&lt;script type=&apos;text/javascript&apos;&gt;
-        ///			//holds on to player object
-        ///			var player;
-        ///
-        ///			//create youtubeplayer
-        ///			function onYouTubePlayerAPIReady() {
-        ///				player = new YT.Player(&apos;player&apos;, {
-        ///					height: &apos;100px&apos;,
-        ///					width: &apos;100p [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string Player {
-            get {
-                return ResourceManager.GetString("Player", resourceCulture);
             }
         }
     }
