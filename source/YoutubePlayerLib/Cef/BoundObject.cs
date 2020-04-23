@@ -31,9 +31,30 @@ namespace YoutubePlayerLib.Cef
             PlayerPlayingChanged?.Invoke(this, state.ParseToYoutubeState());
         }
 
+        public void rateChanged(int data)
+        {
+            Console.WriteLine("BoundObject rate change recvd:"+data);
+        }
+
+        public void onApiChange(int data)
+        {
+            Console.WriteLine("BoundObject api change recvd:"+data);
+        }
+
+        public void onError(int data)
+        {
+            Console.WriteLine("BoundObject error recvd:"+data);
+        }
+
         public void showMessage(string msg)
         {
-            Console.WriteLine("BoundObject: " + msg);
+            Console.WriteLine("BoundObject message rcvd: " + msg);
         }
+
+        public void sendVideoId(string id)
+        {
+            Console.WriteLine("BoundObject videoid recvd: " + id);
+        }
+        
     }
 }

@@ -10,7 +10,7 @@
   var player;
   var autoPlay = false;
   var quality = "hd720";
-  var startUpId = 'XIMLoLxmTDw';
+  var startUpId = 'SJdfQB289Zc';
   
   function onYouTubeIframeAPIReady() {
 	player = new YT.Player('player', {
@@ -18,14 +18,18 @@
 	  width: '640',
 	  videoId: startUpId,
       suggestedQuality: "hd720",
-      playerVars: {
+		playerVars: {
+		  'autoplay': 1,
           'controls': 0,
           'showinfo': 0
       },
 	  events: {
 		'onReady': onPlayerReady,
 		'onStateChange': onPlayerStateChange,
-		'onPlaybackQualityChange' : onPlayerPlaybackQualityChange
+		'onPlaybackQualityChange': onPlayerPlaybackQualityChange,
+		'onPlaybackRateChange': onPlaybackRateChange,
+		'onError': onError,
+		'onApiChange': onApiChange
 	  }
 	});
   }
@@ -43,10 +47,25 @@ function onPlayerStateChange(event) {
   
 function onPlayerPlaybackQualityChange(event) {
 
-      console.log("onplayer playback changed event:" + event)
+	console.log("onplayer playback qty changed event:" + event)
 	boundAsync.qualityChanged();
 }
-  
+function onPlaybackRateChange(event) {
+
+	console.log("onplayer playback rate changed event:" + event)
+	boundAsync.rateChanged(event.data);
+}
+function onError(event) {
+
+	console.log("onplayer playback changed event:" + event)
+	boundAsync.onError(event.data);
+}
+function onApiChange(event) {
+
+	console.log("onplayer playback changed event:" + event)
+	boundAsync.onApiChange(event.data);
+}
+
 function setPlayerState(state) {
 	if(state == "stop")
 		player.stopVideo();
@@ -75,6 +94,37 @@ function setVideoId(videoId) {
 function setQuality(quality) {
 	console.log("on set quality:" + quality)
 	player.setPlaybackQuality(quality);
+}
+
+function seekTo(startSeconds) {
+	console.log("on seekto secs:" + startSeconds)
+	player.seekTo(startSeconds, true);
+}
+
+function pauseVideo() {
+	player.pauseVideo();
+}
+
+function playVideo() {
+	player.playVideo();
+}
+
+function loadVideo(videoId, startSeconds) {
+	player.loadVideoById(videoId, startSeconds);
+	boundAsync.sendVideoId(videoId);
+}
+
+function cueVideo(videoId, startSeconds) {
+	player.cueVideoById(videoId, startSeconds);
+	boundAsync.sendVideoId(videoId);
+}
+
+function mute() {
+	player.mute();
+}
+
+function unMute() {
+	player.unMute();
 }
 
 (async function () {
