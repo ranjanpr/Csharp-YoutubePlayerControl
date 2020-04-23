@@ -30,18 +30,22 @@
 	});
   }
 
-  function onPlayerReady(event) {
-	bound.playerLoaded();
-  }
+function onPlayerReady(event) {
+    console.log("onplayer ready event:"+event)
+	boundAsync.playerLoaded();
+}
 
-  function onPlayerStateChange(event) {
+function onPlayerStateChange(event) {
 
-    bound.playingChanged(event.data);
-  }
+    console.log("onplayer state changed event:" + event)
+	boundAsync.playingChanged(event.data);
+}
   
-  function onPlayerPlaybackQualityChange(event){
-	  bound.qualityChanged();
-  }
+function onPlayerPlaybackQualityChange(event) {
+
+      console.log("onplayer playback changed event:" + event)
+	boundAsync.qualityChanged();
+}
   
 function setPlayerState(state) {
 	if(state == "stop")
@@ -53,11 +57,13 @@ function setPlayerState(state) {
 	
 }
   
-function setVolume(volume){
+function setVolume(volume) {
+	console.log("on set volume:" + volume)
 	player.setVolume(volume);
 }
 
-function setVideoId(videoId){
+function setVideoId(videoId) {
+	console.log("on set videoid:" + videoId)
 	if(autoPlay){
 		player.loadVideoById(videoId,0,quality);
 	}
@@ -66,6 +72,12 @@ function setVideoId(videoId){
 	}
 }
 
-function setQuality(quality){
+function setQuality(quality) {
+	console.log("on set quality:" + quality)
 	player.setPlaybackQuality(quality);
 }
+
+(async function () {
+	await CefSharp.BindObjectAsync("boundAsync", "boundAsync");
+	boundAsync.showMessage('Message from JS');
+})();

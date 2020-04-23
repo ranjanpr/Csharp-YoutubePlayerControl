@@ -47,30 +47,6 @@ namespace YoutubePlayerLib.Cef
                 { "/home.html", Resources.Player },
                 { "/CefPlayer.html", Resources.CefPlayer},
                 { "/CefPlayer.js", Resources.CefPlayer1},
-
-                //{ "/assets/css/shCore.css", Resources.assets_css_shCore_css },
-                //{ "/assets/css/shCoreDefault.css", Resources.assets_css_shCoreDefault_css },
-                //{ "/assets/css/docs.css", Resources.assets_css_docs_css },
-                //{ "/assets/js/application.js", Resources.assets_js_application_js },
-                //{ "/assets/js/jquery.js", Resources.assets_js_jquery_js },
-                //{ "/assets/js/shBrushCSharp.js", Resources.assets_js_shBrushCSharp_js },
-                //{ "/assets/js/shBrushJScript.js", Resources.assets_js_shBrushJScript_js },
-                //{ "/assets/js/shCore.js", Resources.assets_js_shCore_js },
-
-                //{ "/bootstrap/bootstrap-theme.min.css", Resources.bootstrap_theme_min_css },
-                //{ "/bootstrap/bootstrap.min.css", Resources.bootstrap_min_css },
-                //{ "/bootstrap/bootstrap.min.js", Resources.bootstrap_min_js },
-
-                //{ "/BindingTest.html", Resources.BindingTest },
-                //{ "/ExceptionTest.html", Resources.ExceptionTest },
-                //{ "/PopupTest.html", Resources.PopupTest },
-                //{ "/SchemeTest.html", Resources.SchemeTest },
-                //{ "/TooltipTest.html", Resources.TooltipTest },
-                //{ "/FramedWebGLTest.html", Resources.FramedWebGLTest },
-                //{ "/MultiBindingTest.html", Resources.MultiBindingTest },
-                //{ "/ScriptedMethodsTest.html", Resources.ScriptedMethodsTest },
-                //{ "/ResponseFilterTest.html", Resources.ResponseFilterTest },
-                //{ "/DraggableRegionTest.html", Resources.DraggableRegionTest }
             };
         }
 
@@ -83,7 +59,6 @@ namespace YoutubePlayerLib.Cef
             if (string.Equals(fileName, "/PostDataTest.html", StringComparison.OrdinalIgnoreCase))
             {
                 var postDataElement = request.PostData.Elements.FirstOrDefault();
-                //ResourceHandler resourceHandler = ResourceHandler.FromString("Post Data: " + (postDataElement == null ? "null" : postDataElement.GetBody()));
                 stream = ResourceHandler.GetMemoryStream("Post Data: " + (postDataElement == null ? "null" : postDataElement.GetBody()), Encoding.UTF8);
                 mimeType = "text/html";
                 callback.Continue();
@@ -95,18 +70,14 @@ namespace YoutubePlayerLib.Cef
                 var postData = request.PostData;
                 if (postData == null)
                 {
-                    //ResourceHandler resourceHandler = ResourceHandler.FromString("Post Data: null");
                     stream = ResourceHandler.GetMemoryStream("Post Data: null", Encoding.UTF8);
-                    //stream = (MemoryStream)resourceHandler.Stream;
                     mimeType = "text/html";
                     callback.Continue();
                 }
                 else
                 {
                     var postDataElement = postData.Elements.FirstOrDefault();
-                    //ResourceHandler resourceHandler = ResourceHandler.FromString("Post Data: " + (postDataElement == null ? "null" : postDataElement.GetBody()));
                     stream = ResourceHandler.GetMemoryStream("Post Data: " + (postDataElement == null ? "null" : postDataElement.GetBody()), Encoding.UTF8);
-                    //stream = (MemoryStream)resourceHandler.Stream;
                     mimeType = "text/html";
                     callback.Continue();
                 }

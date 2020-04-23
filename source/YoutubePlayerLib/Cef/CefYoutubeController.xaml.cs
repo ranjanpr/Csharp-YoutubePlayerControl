@@ -36,8 +36,7 @@ namespace YoutubePlayerLib.Cef
                 SchemeName = CefSharpSchemeHandlerFactory.SchemeName,
                 SchemeHandlerFactory = new CefSharpSchemeHandlerFactory()
             });
-            CefSharpSettings.LegacyJavascriptBindingEnabled = true;
-
+            
             //if (!CefSharp.Cef.Initialize(settings, shutdownOnProcessExit: true, performDependencyCheck: !DebuggingSubProcess))
             //{
             //    throw new Exception("Unable to Initialize Cef");
@@ -184,10 +183,19 @@ namespace YoutubePlayerLib.Cef
             WebBrowser.Address = @"custom://cefsharp/CefPlayer.html";
             //set startup value for Player
             WebBrowser.LoadingStateChanged += CheckkIfLoadingDone;
-            var bound = new BoundObject();
-            bound.PlayerLoadingDone += JavascriptReady;
-            bound.PlayerPlayingChanged += BoundOnPlayerPlayingChanged;
-            WebBrowser.RegisterJsObject("bound", bound);
+            var boundAsync = new BoundObject();
+            boundAsync.PlayerLoadingDone += JavascriptReady;
+            boundAsync.PlayerPlayingChanged += BoundOnPlayerPlayingChanged;
+            
+            WebBrowser.JavascriptObjectRepository.Register("boundAsync", boundAsync, true);
+            
+            WebBrowser.JavascriptObjectRepository.ObjectBoundInJavascript += (sender, e) =>
+            {
+                var name = e.ObjectName;
+
+                Console.WriteLine($"Object {e.ObjectName} was bound successfully.");
+
+            };
 
             StartCommand = new Command(Start);
             StopCommand = new Command(() => WebBrowser.ExecuteScriptAsync("setPlayerState", stopVideoParam));

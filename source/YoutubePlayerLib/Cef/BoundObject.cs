@@ -30,5 +30,10 @@ namespace YoutubePlayerLib.Cef
         {
             PlayerPlayingChanged?.Invoke(this, state.ParseToYoutubeState());
         }
+
+        public void showMessage(string msg)
+        {
+            Console.WriteLine("BoundObject: " + msg);
+        }
     }
 }
