@@ -30,12 +30,13 @@ namespace YoutubePlayerLib.Cef
         static CefYoutubeController()
         {
             var settings = new CefSettings();
-
+            
             settings.RegisterScheme(new CefCustomScheme
             {
                 SchemeName = CefSharpSchemeHandlerFactory.SchemeName,
                 SchemeHandlerFactory = new CefSharpSchemeHandlerFactory()
             });
+            CefSharpSettings.LegacyJavascriptBindingEnabled = true;
 
             //if (!CefSharp.Cef.Initialize(settings, shutdownOnProcessExit: true, performDependencyCheck: !DebuggingSubProcess))
             //{

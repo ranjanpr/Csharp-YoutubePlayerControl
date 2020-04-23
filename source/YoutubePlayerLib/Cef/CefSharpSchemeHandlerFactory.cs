@@ -83,8 +83,8 @@ namespace YoutubePlayerLib.Cef
             if (string.Equals(fileName, "/PostDataTest.html", StringComparison.OrdinalIgnoreCase))
             {
                 var postDataElement = request.PostData.Elements.FirstOrDefault();
-                var resourceHandler = ResourceHandler.FromString("Post Data: " + (postDataElement == null ? "null" : postDataElement.GetBody()));
-                stream = (MemoryStream)resourceHandler.Stream;
+                //ResourceHandler resourceHandler = ResourceHandler.FromString("Post Data: " + (postDataElement == null ? "null" : postDataElement.GetBody()));
+                stream = ResourceHandler.GetMemoryStream("Post Data: " + (postDataElement == null ? "null" : postDataElement.GetBody()), Encoding.UTF8);
                 mimeType = "text/html";
                 callback.Continue();
                 return true;
@@ -95,16 +95,18 @@ namespace YoutubePlayerLib.Cef
                 var postData = request.PostData;
                 if (postData == null)
                 {
-                    var resourceHandler = ResourceHandler.FromString("Post Data: null");
-                    stream = (MemoryStream)resourceHandler.Stream;
+                    //ResourceHandler resourceHandler = ResourceHandler.FromString("Post Data: null");
+                    stream = ResourceHandler.GetMemoryStream("Post Data: null", Encoding.UTF8);
+                    //stream = (MemoryStream)resourceHandler.Stream;
                     mimeType = "text/html";
                     callback.Continue();
                 }
                 else
                 {
                     var postDataElement = postData.Elements.FirstOrDefault();
-                    var resourceHandler = ResourceHandler.FromString("Post Data: " + (postDataElement == null ? "null" : postDataElement.GetBody()));
-                    stream = (MemoryStream)resourceHandler.Stream;
+                    //ResourceHandler resourceHandler = ResourceHandler.FromString("Post Data: " + (postDataElement == null ? "null" : postDataElement.GetBody()));
+                    stream = ResourceHandler.GetMemoryStream("Post Data: " + (postDataElement == null ? "null" : postDataElement.GetBody()), Encoding.UTF8);
+                    //stream = (MemoryStream)resourceHandler.Stream;
                     mimeType = "text/html";
                     callback.Continue();
                 }
