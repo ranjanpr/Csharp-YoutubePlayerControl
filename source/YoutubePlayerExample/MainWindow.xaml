@@ -9,7 +9,7 @@
     xmlns:System="clr-namespace:System;assembly=mscorlib"
     x:Class="YoutubePlayerExample.MainWindow"
     mc:Ignorable="d"
-    Title="MainWindow" WindowState="Maximized" WindowStyle="None" Topmost="False">
+    Title="MainWindow" WindowState="Maximized" Topmost="False">
 <Grid>
         <Grid.Resources>
             <Style TargetType="Button">
